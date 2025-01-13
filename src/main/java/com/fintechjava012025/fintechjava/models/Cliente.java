@@ -29,10 +29,50 @@ public class Cliente {
     int min = 8, int max = 20, String message = "La contraseña debe tener entre 8 y 20 caracteres"
     @Pattern(String regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$",
     String message = "La contraseña debe incluir al menos una mayúscula, una minúscula, un número y un carácter especial")
-    private String Contraseña;
+    private String contrasenia;
 
     //Constructur vacío (necesario para jpa)
     public void Cliente() {}
 
+    //Constructor con los atributos
+    public Cliente(Long DNI, String nombre, String apellido, String mail, String contrasenia) {
+        this.DNI = DNI;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.mail = mail;
+        this.contrasenia = contrasenia;
+    }
+
+    //Getters y Setters
+    public Long getDNI() {
+        return DNI;
+    }
+    public void setDNI(Long dni) {
+        this.DNI = dni;
+    }
+    public String getNombre() {
+        return nombre;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public String getApellido() {
+        return apellido;
+    }
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+    public String getMail() {
+        return mail;
+    }
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+    public String getContrasenia() {
+        return contrasenia;
+    }
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
+    }
 
 }
