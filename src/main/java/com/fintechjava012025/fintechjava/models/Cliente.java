@@ -7,6 +7,7 @@ import org.apache.logging.log4j.message.Message;
 //import jakarta.validation.constraints.Email;
 import org.hibernate.annotations.processing.Pattern;
 
+
 public class Cliente {
     //Atributos
     @NotNull //(String Message = "El DNI no puede estar vacío");
@@ -29,10 +30,10 @@ public class Cliente {
     //@Size int min = 8, int max = 20; //, String message = "La contraseña debe tener entre 8 y 20 caracteres");
     //@Pattern (String regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$",
     // String message = "La contraseña debe incluir al menos una mayúscula, una minúscula, un número y un carácter especial");
-    @Pattern(
-            regexp = """(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&*+=._-]).{8,20}$""",
-            message = """La contraseña solo debe contener letras y números"""
-    )
+    /*@Pattern(
+            regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&*+=._-]).{8,20}$",
+            message = "La contraseña solo debe contener letras y números"
+    )*/
     private String contrasenia;
 
     //Constructur vacío (necesario para jpa)
