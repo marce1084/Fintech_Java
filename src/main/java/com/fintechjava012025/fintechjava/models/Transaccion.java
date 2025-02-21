@@ -1,9 +1,7 @@
 package com.fintechjava012025.fintechjava.models;
 
 import com.sun.istack.internal.NotNull;
-import jakarta.persistence.Id;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
@@ -23,6 +21,10 @@ public class Transaccion {
 
     @NotNull
     private String motivo;
+
+    @ManyToOne
+    @JoinColumn(name = "cuenta_id", nullable = false)
+    private Cuenta cuenta;
 
     //Contructor, setters y getters
     public Transaccion() {}
@@ -64,6 +66,12 @@ public class Transaccion {
     }
     public void setMotivo(String motivo) {
         this.motivo = motivo;
+    }
+    public Cuenta getCuenta() {
+        return cuenta;
+    }
+    public void setCuenta(Cuenta cuenta) {
+        this.cuenta = cuenta;
     }
 
 }
