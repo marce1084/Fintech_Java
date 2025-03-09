@@ -1,10 +1,10 @@
 package com.fintechjava012025.fintechjava.models;
 
-import com.sun.istack.internal.NotNull;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class Cuenta {
 

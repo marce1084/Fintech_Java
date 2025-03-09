@@ -1,12 +1,11 @@
 package com.fintechjava012025.fintechjava.models;
 
-import com.sun.istack.internal.NotNull;
 //import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.NotNull;
 import org.apache.logging.log4j.message.Message;
 //import org.hibernate.annotations.BatchSize;
 //import jakarta.validation.constraints.Email;
 import org.hibernate.annotations.processing.Pattern;
-
 
 public class Cliente {
     //Atributos

@@ -1,6 +1,5 @@
 package com.fintechjava012025.fintechjava.models;
 
-import com.sun.istack.internal.NotNull;
 import jakarta.persistence.*;
 import java.util.Date;
 
