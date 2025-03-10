@@ -70,6 +70,18 @@ public class Transaccion {
     public boolean validarTipo(String tipo) {
         return tipo != null && (tipo.equals("Depósito") || tipo.equals("Retiro"));
     }
+    //Metodo para validar el monto (por ej.: deber ser mayor a cero)
+    public boolean validarCantidad(Double cantidad) {
+        return cantidad != null && cantidad >= 0;
+    }
+    //Metodo para validar la fecha
+    public boolean validarFecha(Date fecha) {
+        return fecha != null && fecha.before(getFecha());
+    }
+    //Metodo para validar el motivo
+    public boolean validarMotivo(String motivo) {
+        return motivo != null && motivo.length() > 0;
+    }
 
     // Metodo Factory para crear una nueva transacción basada en otra, modificando solo lo necesario.
     /*Se genera una nueva instancia de Transaccion basada en una existente.
