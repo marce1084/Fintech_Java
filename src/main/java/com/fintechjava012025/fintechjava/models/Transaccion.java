@@ -1,22 +1,22 @@
 package com.fintechjava012025.fintechjava.models;
 
-import jakarta.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Transaccion {
     private final Long id;
-    private final Double cantidad;
-    private final Date fecha;
+    private final Double monto;
+    private final LocalDateTime fecha;
     private final String tipo;
     private final String motivo;
     private final Cuenta cuenta;
 
     //Contructor con validación
-    public Transaccion(Long id, Double cantidad, Date fecha, String tipo, String motivo, Cuenta cuenta) {
+    public Transaccion(Long id, Double monto, LocalDateTime fecha, String tipo, String motivo, Cuenta cuenta) {
         if (id == null || id <= 0 ) {
             throw new IllegalArgumentException("Id inválido. Debe ser mayor que 0");
         }
-        if (cantidad == null || cantidad <= 0 ) {
+        if (monto == null || monto <= 0 ) {
             throw new IllegalArgumentException("Cantidad inválida. Debe ser mayor que 0");
         }
         if (fecha == null) {
@@ -30,7 +30,7 @@ public class Transaccion {
         }
 
         this.id = id;
-        this.cantidad = cantidad;
+        this.monto = monto;
         this.fecha = fecha;
         this.tipo = tipo;
         this.motivo = motivo;
@@ -46,11 +46,11 @@ public class Transaccion {
         return id;
     }
 
-    public Double getCantidad() {
-        return cantidad;
+    public Double getMonto() {
+        return monto;
     }
 
-    public Date getFecha() {
+    public LocalDateTime getFecha() {
         return fecha;
     }
 
@@ -71,23 +71,23 @@ public class Transaccion {
         return tipo != null && (tipo.equals("Depósito") || tipo.equals("Retiro"));
     }
     //Metodo para validar el monto (por ej.: deber ser mayor a cero)
-    public boolean validarCantidad(Double cantidad) {
-        return cantidad != null && cantidad >= 0;
+    public boolean validarMonto(Double monto) {
+        return monto != null && monto >= 0;
     }
-    //Metodo para validar la fecha
+   /* //Metodo para validar la fecha
     public boolean validarFecha(Date fecha) {
         return fecha != null && fecha.before(getFecha());
     }
     //Metodo para validar el motivo
     public boolean validarMotivo(String motivo) {
         return motivo != null && motivo.length() > 0;
-    }
+    }*/
 
     // Metodo Factory para crear una nueva transacción basada en otra, modificando solo lo necesario.
     /*Se genera una nueva instancia de Transaccion basada en una existente.
     * el id, fecha y tipo permanecen iguales, solo se puede cambiar cantidad y motivo*/
-    public Transaccion nuevaTransaccion(Double nuevaCantidad, String nuevomotivo) {
-        return new Transaccion(this.id, nuevaCantidad, this.fecha, this.tipo, nuevomotivo, this.cuenta);
+    public Transaccion nuevaTransaccion(Double nuevomonto, String nuevomotivo) {
+        return new Transaccion(this.id, nuevomonto, LocalDateTime.now(), this.tipo, nuevomotivo, this.cuenta);
     }
 
 }

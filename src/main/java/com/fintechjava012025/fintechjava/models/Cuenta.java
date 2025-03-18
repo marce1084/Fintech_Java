@@ -1,11 +1,10 @@
 package com.fintechjava012025.fintechjava.models;
 
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+
+import java.time.LocalDateTime;
 
 public class Cuenta {
     @Id
@@ -19,7 +18,9 @@ public class Cuenta {
     @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
-    @OneToMany
+    //La relación @OneToMany debe ser una lista de transacciones, no una sola transacción.
+    // Es recomendable usar mappedBy para indicar que la relación es bidireccional.
+    @OneToMany(mappedBy = "cuenta",cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "movimiento_id", nullable = false)
     private Transaccion transaccion;
 
@@ -62,9 +63,38 @@ public class Cuenta {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+
+    public Transaccion getTransaccion() {
+        return transaccion;
+    }
+    public void setTransaccion(Transaccion transaccion) {
+        this.transaccion = transaccion;
+    }
+
     //Metodo para depositar dinero
+    public void depositar(Double monto, String motivo) {
+        if (monto != null || monto > 0) {
+            this.saldo += monto; // // "this.saldo" se refiere al atributo de la clase
+        } else {
+            throw new IllegalArgumentException("El monto a depositar deber ser mayor que 0.");
+        }
+        //Registrar la transacción
+        Transaccion transaccion = new Transaccion(
+                null, //El id se genera automáticamente
+                monto,
+                LocalDateTime.now(), // Fecha y hora de la transacción
+                "Retiro", //Tipo de transacción
+                motivo, // Descripción o motivo de la transacción
+                this // Cuenta asociada a la transacción, hace referencia a la instancia actual de la clase Cuenta
+        );
+    }
+
+
     public Double calcularSaldo() {
         return saldo;
+    }
+    public Double calcularSaldoInicial() {
+        return saldoInicial;
     }
 
 }
