@@ -1,38 +1,31 @@
 package com.fintechjava012025.fintechjava.models;
 
-//import jakarta.validation.constraints.Size;
-import jakarta.validation.constraints.NotNull;
-import org.apache.logging.log4j.message.Message;
-//import org.hibernate.annotations.BatchSize;
-//import jakarta.validation.constraints.Email;
-import org.hibernate.annotations.processing.Pattern;
+import jakarta.validation.constraints.*;
+import jakarta.persistence.*;
+import java.util.List;
 
 public class Cliente {
     //Atributos
-    @NotNull //(String Message = "El DNI no puede estar vacío");
+    @NotNull(message = "El DNI no puede ser nulo")
+    @Positive(message = "El DNI deber ser major que 0")
     private Long DNI;
 
-    @NotNull //(String Message = "El nombre no puede estar vacío");
-    //@BatchSize(size = 0)
-    //int min(3), int max(100), String Message = "El nombre debe tener entre 3 y 100 caracteres"
+    @NotNull(message = "El nombre no puede estar vacío")
+    @Size(min = 3, max = 50, message = "El nombre debe tener entre 3 y 100 caracteres")
     private String nombre;
 
-    @NotNull
-    //@Size (int min(3), int max(100)); //, String Message = "El apellido debe tener entre 3 y 100 caracteres");
+    @NotNull(message = "El apellido no puede estar vacío")
+    @Size(min = 3, max = 50, message = "El apellido debe tener entre 3 y 100 caracteres")
     private String apellido;
 
-    @NotNull //(String Message = "El correo no puede estar vacío");
-    //@Email // (String Message = "Debe proporcionar un mail válido");
+    @NotNull(message = "El correo no puede estar vacío")
+    @Email(message = "Debe proporcionar un correo electrónico válido")
     private String mail;
 
-    @NotNull //(String Message = "La contraseña no puede estar vacía");
-    //@Size int min = 8, int max = 20; //, String message = "La contraseña debe tener entre 8 y 20 caracteres");
-    //@Pattern (String regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$",
-    // String message = "La contraseña debe incluir al menos una mayúscula, una minúscula, un número y un carácter especial");
-    /*@Pattern(
-            regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&*+=._-]).{8,20}$",
-            message = "La contraseña solo debe contener letras y números"
-    )*/
+    @NotNull(message = "La contraseña no puede estar vacía")
+    @Size(min = 8, max = 20, message = "La contraseña debe tener entre 8 y 20 caracteres")
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$",
+    message = "La contraseña debe incluir al menos una mayúscula, una minúscula, un número y un carácter especial")
     private String contrasenia;
 
     //Constructur vacío (necesario para jpa)
