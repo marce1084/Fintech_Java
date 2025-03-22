@@ -3,6 +3,7 @@ package com.fintechjava012025.fintechjava.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -10,30 +11,41 @@ import java.util.List;
 
 public class Cuenta {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
+
+    @NotNull(message = "El saldo no debe ser nulo")
+    @PositiveOrZero(message = "El saldo no puede ser negativo")
     private Double saldo;
-    @NotNull
+
+    @NotNull(message = "El saldo inicial no puede ser nulo")
+    @PositiveOrZero(message = "El saldo inicial no puede ser negativo")
     private Double saldoInicial;
-    @NotBlank
+
+    @NotBlank(message = "El tipo de cuenta no puede estar vacío")
     private String tipoCuenta;
+
     @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
+
     //La relación @OneToMany debe ser una lista de transacciones, no una sola transacción.
     // Es recomendable usar mappedBy para indicar que la relación es bidireccional.
     @OneToMany(mappedBy = "cuenta",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Transaccion> transacciones = new ArrayList<>();
 
-    //Constructor, getters y setters
-    public Cuenta() {}
-
-    public Cuenta(Long id, Double saldo, Double saldoInicial, String tipoCuenta) {
+    //Constructor vacío
+    public Cuenta() {
+        this.saldoInicial = 0.0;
+    }
+    //Constructor con parámetros
+    public Cuenta(Long id, Double saldoInicial, String tipoCuenta) {
         this.id = id;
-        this.saldo = saldo;
+        this.saldo = saldoInicial; //El saldo inicial también es el saldo actual al crear la cuenta
         this.saldoInicial = saldoInicial;
         this.tipoCuenta = tipoCuenta;
     }
+    //Setters y Getters
     public Long getId() {
         return id;
     }
@@ -49,9 +61,6 @@ public class Cuenta {
     public Double getSaldoInicial() {
         return saldoInicial;
     }
-    public void setSaldoInicial(Double saldoInicial) {
-        this.saldoInicial = saldoInicial;
-    }
     public String getTipoCuenta() {
         return tipoCuenta;
     }
@@ -64,12 +73,11 @@ public class Cuenta {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-
-    public Transaccion getTransaccion() {
-        return transaccion;
+    public List<Transaccion> getTransacciones() {
+        return transacciones;
     }
-    public void setTransaccion(Transaccion transaccion) {
-        this.transaccion = transaccion;
+    public void setTransaccion(List<Transaccion> transacciones) {
+        this.transacciones = transacciones;
     }
 
     //Metodo depositar
@@ -109,12 +117,5 @@ public class Cuenta {
             throw new IllegalArgumentException("Saldo insuficiente o monto incorrecto.");
         }
     }
-
-    /*public Double calcularSaldo() {
-        return saldo;
-    }
-    public Double calcularSaldoInicial() {
-        return saldoInicial;
-    }*/
 
 }
