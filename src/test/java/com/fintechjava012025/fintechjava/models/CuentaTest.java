@@ -26,6 +26,7 @@ public class CuentaTest {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             cuenta.depositar(-50.0,"Deposito inválido");
         });
+        //Verificaciones
         assertEquals("El monto a depositar deber ser mayor a 0", exception.getMessage());
         assertEquals(100.0, cuenta.getSaldo(), "El saldo no debe cambiar si el depósito es inválido");
     }
@@ -35,7 +36,7 @@ public class CuentaTest {
     void testRetirarMontoValido() {
         Cuenta cuenta = new Cuenta(1L, 100.0, "Ahorro");
         cuenta.retirar(50.0,"Retiro inicial");
-
+        //Verificaciones
         assertEquals(50.0, cuenta.getSaldo(), "El saldo deber ser 50.0 después del retiro");
         assertEquals(1, cuenta.getTransacciones().size(), "Debe haber una transaccion registrada");
     }

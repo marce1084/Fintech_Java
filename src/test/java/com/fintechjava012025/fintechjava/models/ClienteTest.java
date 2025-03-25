@@ -10,6 +10,7 @@ public class ClienteTest {
     void testCrearClienteValido() {
         Cliente cliente = new Cliente(30985354L, "Marcelo", "Guerra", "marcelo.guerra@gmail.com", "Passwor01");
 
+        //Verificaciones
         assertNotNull(cliente); //Verifica que el objeto cliente no sea null
         assertEquals(30985354L,cliente.getDNI()); //Compara que el DNI del cliente sea igual a 12345678L
         assertEquals("Marcelo",cliente.getNombre()); //Verifica que el nombre del cliente sea "Marcelo"
