@@ -13,7 +13,7 @@ public class TransaccionTest {
 
         //Verificaciones
         assertNotNull (transaccion); // ¿Se creó el objeto?
-        assertEquals(1L, transaccion.getId()); // ¿ID correcto?
+        assertEquals(1L, transaccion.getId()); //¿Id correcto?
         assertEquals(50.0, transaccion.getMonto()); // ¿Monto correcto?
         assertEquals("Depósito", transaccion.getTipo()); // ¿Tipo correcto?
         assertEquals("Depósito inicial", transaccion.getMotivo());
