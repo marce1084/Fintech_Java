@@ -40,7 +40,7 @@ public class CuentaTest {
         assertEquals(1, cuenta.getTransacciones().size(), "Debe haber una transaccion registrada");
     }
 
-    //Metodo testRetirarMontoInvlido
+    //Metodo testRetirarMontoInvalido
     @Test
     void testRetirarMontoInvalido() {
         Cuenta cuenta = new Cuenta(1L, 100.0, "Ahorro");
