@@ -8,7 +8,7 @@ public class ClienteTest {
 
     @Test
     void testCrearClienteValido() {
-        Cliente cliente = new Cliente(30985354L, "Marcelo", "Guerra", "marcelo.guerra@gmail.com", "Passwor01");
+        Cliente cliente = new Cliente(30985354L, "Marcelo", "Guerra", "marcelo.guerra@gmail.com", "Password01");
 
         //Verificaciones
         assertNotNull(cliente); //Verifica que el objeto cliente no sea null
@@ -22,7 +22,7 @@ public class ClienteTest {
     @Test
     void testCrearClienteInvalido() {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            new Cliente(null, "Marcelo", "Guerra", "marcelo.guerra@gmail.com", "Passwor01");
+            new Cliente(null, "Marcelo", "Guerra", "marcelo.guerra@gmail.com", "Password01");
         });
         assertEquals("El DNI no puede ser nulo", exception.getMessage());
     }
