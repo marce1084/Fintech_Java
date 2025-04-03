@@ -35,7 +35,7 @@ public class Cliente {
     public Cliente(Long DNI, String nombre, String apellido, String mail, String contrasenia) {
         //Implemantamos validaciones
         if (DNI == null || DNI <= 0) {
-            throw new IllegalArgumentException("DNI inválido");
+            throw new IllegalArgumentException("El DNI no puede ser nulo");
         }
         if (nombre == null || nombre.trim().isEmpty()) {
             throw new IllegalArgumentException("Nombre no puede estar vacío");

@@ -39,7 +39,7 @@ public class Transaccion {
             throw new IllegalArgumentException("ID de transacción inválido");
         }
         if (monto == null || monto <= 0) {
-            throw new IllegalArgumentException("Monto debe ser positivo");
+            throw new IllegalArgumentException("El monto no puede ser nulo");
         }
         if (fecha == null || fecha.isAfter(LocalDateTime.now())) {
             throw new IllegalArgumentException("Fecha inválida");

@@ -114,7 +114,7 @@ public class Cuenta {
             );
             this.transacciones.add(transaccion);
         } else {
-            throw new IllegalArgumentException("Saldo insuficiente o monto inválido.");
+            throw new IllegalArgumentException("Saldo insuficiente o monto inválido");
         }
     }
 
