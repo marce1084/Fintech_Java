@@ -33,6 +33,23 @@ public class Cliente {
 
     //Constructor con los atributos
     public Cliente(Long DNI, String nombre, String apellido, String mail, String contrasenia) {
+        //Implemantamos validaciones
+        if (DNI == null || DNI <= 0) {
+            throw new IllegalArgumentException("DNI inválido");
+        }
+        if (nombre == null || nombre.trim().isEmpty()) {
+            throw new IllegalArgumentException("Nombre no puede estar vacío");
+        }
+        if (apellido == null || apellido.trim().isEmpty()) {
+            throw new IllegalArgumentException("Apellido no puede estar vacío");
+        }
+        if (mail == null || !mail.contains("@")) {
+            throw new IllegalArgumentException("Email inválido");
+        }
+        if (contrasenia == null || contrasenia.length() < 8) {
+            throw new IllegalArgumentException("Contraseña debe tener al menos 8 caracteres");
+        }
+
         this.DNI = DNI;
         this.nombre = nombre;
         this.apellido = apellido;

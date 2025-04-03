@@ -95,7 +95,7 @@ public class Cuenta {
             );
             this.transacciones.add(transaccion);
         } else {
-            throw new IllegalArgumentException("El monto a depositar deber ser mayor que 0.");
+            throw new IllegalArgumentException("El monto a depositar deber ser mayor a 0");
         }
     }
 
@@ -114,7 +114,7 @@ public class Cuenta {
             );
             this.transacciones.add(transaccion);
         } else {
-            throw new IllegalArgumentException("Saldo insuficiente o monto incorrecto.");
+            throw new IllegalArgumentException("Saldo insuficiente o monto inválido.");
         }
     }
 

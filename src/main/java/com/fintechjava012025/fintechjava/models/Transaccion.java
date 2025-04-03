@@ -34,6 +34,23 @@ public class Transaccion {
 
     //Contructor con validación
     public Transaccion(Long id, Double monto, LocalDateTime fecha, String tipo, String motivo, Cuenta cuenta) {
+        //Implemantamos validaciones
+        if (id == null || id <= 0) {
+            throw new IllegalArgumentException("ID de transacción inválido");
+        }
+        if (monto == null || monto <= 0) {
+            throw new IllegalArgumentException("Monto debe ser positivo");
+        }
+        if (fecha == null || fecha.isAfter(LocalDateTime.now())) {
+            throw new IllegalArgumentException("Fecha inválida");
+        }
+        if (tipo == null || tipo.trim().isEmpty()) {
+            throw new IllegalArgumentException("Tipo de transacción requerido");
+        }
+        if (cuenta == null) {
+            throw new IllegalArgumentException("Cuenta asociada requerida");
+        }
+
         this.id = id;
         this.monto = monto;
         this.fecha = fecha;
