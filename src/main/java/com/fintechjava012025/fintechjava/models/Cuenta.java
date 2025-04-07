@@ -29,6 +29,8 @@ public class Cuenta {
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
 
+    private Long contadorTransacciones = 1L; // Contador interno
+
     //La relación @OneToMany debe ser una lista de transacciones, no una sola transacción.
     // Es recomendable usar mappedBy para indicar que la relación es bidireccional.
     @OneToMany(mappedBy = "cuenta",cascade = CascadeType.ALL, orphanRemoval = true)
@@ -86,7 +88,7 @@ public class Cuenta {
             this.saldo += monto; // // "this.saldo" se refiere al atributo de la clase
             //Registrar la transacción
             Transaccion transaccion = new Transaccion(
-                    null, //El id se genera automáticamente
+                    contadorTransacciones++, //El id se genera automáticamente
                     monto,
                     LocalDateTime.now(), // Fecha y hora de la transacción
                     "Depósito", //Tipo de transacción
@@ -105,7 +107,7 @@ public class Cuenta {
             this.saldo -= monto;
             //Registrar la transacción
             Transaccion transaccion = new Transaccion(
-                    null,
+                    contadorTransacciones++,
                     monto,
                     LocalDateTime.now(),
                     "Retiro",
@@ -117,5 +119,4 @@ public class Cuenta {
             throw new IllegalArgumentException("Saldo insuficiente o monto inválido");
         }
     }
-
 }
